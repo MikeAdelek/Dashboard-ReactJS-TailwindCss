@@ -4,6 +4,9 @@ import TransactionChart from "./TransactionChart";
 import ImageCarousel from "./ImageCarousel";
 import EventHistory from "./Table";
 
+// Dashboard component that serves as the main layout container
+// Organizes and arranges various dashboard elements in a structured layout
+
 const Dashboard = () => {
   return (
     <div className="flex flex-col gap-4">
