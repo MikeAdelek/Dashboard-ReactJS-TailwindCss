@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { CiMenuKebab } from "react-icons/ci";
 import { CiImport } from "react-icons/ci";
-import { Table_Rows, tableHead } from "../constants/table";
 import { IoIosArrowDropup } from "react-icons/io";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
-import { mobileNav } from "../constants/navigation";
+
+import { mobileNav } from "../constants/navigation"; // Mobile navigation links
+import { Table_Rows, tableHead } from "../constants/table"; //Table data and headers
 
 const EventHistory = () => {
+  // State variables for active tab, dropdown, pagination, and items per page
   const [activeTab, setActiveTab] = useState("Home");
   const [dropDown, setDropDown] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  // Function to toggle the visibility of dropdown rows
   const toggleRow = (index) => {
     const newDropDown = new Set(dropDown);
     if (newDropDown.has(index)) {
@@ -30,6 +33,7 @@ const EventHistory = () => {
       <div className="mt-10 space-y-4 lg:space-x-0">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex flex-col flex-grow sm:flex-row gap-4">
+            {/* Search bar */}
             <div className="relative w-full sm:max-w-md">
               <input
                 type="search"
@@ -38,6 +42,8 @@ const EventHistory = () => {
               />
               <CiSearch className="absolute left-3 top-0 transform translate-y-1/2 h-5 w-5 text-gray-400 dark:text-white" />
             </div>
+
+            {/* Filter dropdowns for Date, Status, Name */}
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <select className="bg-white dark:bg-[#6A6676] transition-colors dark:text-white w-full sm:w-auto text-sm border dark:border-none rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-[#8576FF]">
                 <option value="Date">Date</option>
@@ -52,6 +58,8 @@ const EventHistory = () => {
                 Displaying {Table_Rows.length} results
               </span>
             </div>
+
+            {/* Sort and action buttons */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:ml-auto">
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
                 <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -67,6 +75,8 @@ const EventHistory = () => {
                   >
                     <option value="Sort text-sm">Most Recent</option>
                   </select>
+
+                  {/* Additional buttons (menu and export) */}
                   <div className="flex items-center gap-2 sm:gap-3">
                     <button className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-[#8576FF]">
                       <CiMenuKebab className="h-5 w-5 dark:text-white" />
@@ -84,6 +94,7 @@ const EventHistory = () => {
           </div>
         </div>
 
+        {/* Table view for larger screens */}
         <div className="">
           <div className="hidden sm:block mt-6 overflow-x-auto">
             {/* <div className="inline-block min-w-full align-middle"></div> */}
@@ -100,6 +111,7 @@ const EventHistory = () => {
                   ))}
                 </tr>
               </thead>
+              {/* Table body */}
               <tbody className="bg-white dark:bg-[#484554] divide-y divide-gray-200">
                 {Table_Rows.map(({ Event, Date, Speaker, Status }, index) => (
                   <tr
@@ -132,6 +144,7 @@ const EventHistory = () => {
               </tbody>
             </table>
 
+            {/* Pagination controls */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-4 py-3 bg-white dark:bg-[#484554] border-t border-gray-200 border-none">
               <div className="flex items-center justify-center sm:justify-start space-x-2">
                 <button
@@ -143,7 +156,7 @@ const EventHistory = () => {
                 >
                   <MdArrowLeft className="h-5 w-5 text-gray-500 dark:text-white" />
                 </button>
-
+                {/* Pagination buttons */}
                 <div className="flex space-x-1">
                   {[1, 2, 3].map((page) => (
                     <button
@@ -184,9 +197,6 @@ const EventHistory = () => {
                   className="bg-white dark:bg-[#6A6676] block w-full rounded-md dark:text-white border-gray-300 dark:border-none py-1.5 pl-3 pr-10 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 >
                   <option value={10}>10 Row</option>
-                  {/* <option value={5}>5 per page</option>
-                  <option value={20}>20 per page</option>
-                  <option value={50}>50 per page</option> */}
                 </select>
               </div>
             </div>
@@ -229,7 +239,6 @@ const EventHistory = () => {
                   {dropDown.has(index) && (
                     <div className="px-4 pb-3 space-y-2">
                       <div className="flex justify-between text-sm">
-                        {/* <span className="text-gray-500">Speaker:</span> */}
                         <span className="dark:text-white text-gray-900">
                           {Speaker}
                         </span>
@@ -237,8 +246,6 @@ const EventHistory = () => {
                           {Date}
                         </span>
                       </div>
-                      {/* <div className="flex justify-between text-sm"></div> */}
-                      {/* <span className="text-gray-500">Date:</span> */}
                     </div>
                   )}
                 </div>
@@ -296,9 +303,6 @@ const EventHistory = () => {
                     className="bg-white dark:bg-[#6A6676] dark:text-white block w-full rounded-md border-gray-300 dark:border-none py-1.5 pl-3 pr-10 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   >
                     <option value={10}>10 Row</option>
-                    {/* <option value={5}>5 per page</option>
-                  <option value={20}>20 per page</option>
-                  <option value={50}>50 per page</option> */}
                   </select>
                 </div>
               </div>
@@ -323,7 +327,6 @@ const EventHistory = () => {
                   </button>
                 ))}
               </nav>
-              {/* <div className="sm:hidden" /> */}
             </div>
           </div>
         </div>

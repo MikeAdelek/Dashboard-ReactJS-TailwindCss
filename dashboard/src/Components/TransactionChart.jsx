@@ -1,17 +1,19 @@
 import React from "react";
+import Slide1 from "../assets/1.png";
+import Slide2 from "../assets/2.png";
+import Slide3 from "../assets/3.png";
+
+import ImageCarousel from "./ImageCarousel";
+
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
   CartesianGrid,
-  ResponsiveContainer
-  // Rectangle
+  ResponsiveContainer,
+  Rectangle
 } from "recharts";
-import ImageCarousel from "./ImageCarousel";
-import Slide1 from "../assets/1.png";
-import Slide2 from "../assets/2.png";
-import Slide3 from "../assets/3.png";
 
 export const slides = [
   {
@@ -134,7 +136,7 @@ const TransactionChart = () => {
               <Bar
                 dataKey="uv"
                 fill="#8576FF"
-                // activeBar={<Rectangle fill="red" stroke="red" />}
+                activeBar={<Rectangle fill="red" />}
               />
             </BarChart>
           </ResponsiveContainer>

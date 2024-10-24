@@ -1,36 +1,53 @@
 import React, { useState } from "react";
-import { HiOutlineUserCircle, HiMenuAlt2, HiX } from "react-icons/hi";
-import { MoonIcon, SunIcon } from "lucide-react";
+
 import { IoMdClose } from "react-icons/io";
-import { sidebarItems } from "../constants/navigation";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { HiOutlineUserCircle, HiMenuAlt2, HiX } from "react-icons/hi";
+
 import EventCard from "./EventCard";
+import { sidebarItems } from "../constants/navigation";
 import { useDarkMode } from "../Components/DarkModeContext";
 
 const Sidebar = () => {
+  // State to control whether the sidebar is open (for mobile views)
   const [isOpen, setIsOpen] = useState(true);
+
+  // State to control whether the sidebar is collapsed (minimized width)
   const [collapse, setCollapse] = useState(true);
+
+  // State to control the visibility of the EventCard component
   const [showEventCard, setShowEventCard] = useState(false);
+
+  // Dark mode state from custom dark mode context
   const { darkMode, setDarkMode } = useDarkMode();
 
+  // Toggle sidebar visibility (for mobile)
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  // Toggle between dark mode and light mode
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
+  // Handle event edit action
   const handleEdit = () => {
     console.log("Edit event");
   };
 
+  // Handle event delete action
   const handleDelete = () => console.log("Delete event");
 
+  // Handle event completion action
   const handleComplete = () => console.log("Mark as completed");
 
+  // Handle sidebar item clicks
   const handleItemClick = (key) => {
     if (key === "Event") {
-      setShowEventCard(!showEventCard);
+      setShowEventCard(!showEventCard); // Toggle event card visibility
     } else if (key === "Collapse") {
-      setCollapse(!collapse);
+      setCollapse(!collapse); // Toggle sidebar collapse
     }
   };
 
+  // Dynamic classes for the sidebar links (adjusts based on dark mode)
   const linkClasses = `flex items-center text-md gap-2 px-8 py-4 rounded-sm transition-colors
     ${
       darkMode
@@ -47,6 +64,7 @@ const Sidebar = () => {
         {isOpen ? <HiX /> : <HiMenuAlt2 />}
       </button>
 
+      {/* Sidebar container */}
       <div
         className={`
         fixed inset-y-0 left-0 z-10 ${
@@ -57,6 +75,7 @@ const Sidebar = () => {
         ${darkMode ? "bg-[#6A6676]" : "bg-white"}
       `}
       >
+        {/* Logo and dark mode toggle button */}
         <div className="flex justify-between items-center p-4 top-10 sm:justify-center relative">
           <span
             className={`px-8 text-lg ${
@@ -71,6 +90,7 @@ const Sidebar = () => {
               !collapse ? "transform scale-110" : ""
             }`}
           >
+            {/* Dark mode toggle icon (sun for light mode, moon for dark mode) */}
             {darkMode ? (
               <SunIcon
                 className={`${
@@ -85,6 +105,7 @@ const Sidebar = () => {
           </button>
         </div>
 
+        {/* Sidebar items */}
         <div className="flex-1 py-8 flex flex-col">
           {sidebarItems.map((item) => (
             <div
@@ -111,6 +132,7 @@ const Sidebar = () => {
           ))}
         </div>
 
+        {/* User profile section */}
         <div
           className={`hover:bg-[#484554]
             flex items-center ${
@@ -119,12 +141,14 @@ const Sidebar = () => {
             ${darkMode ? "text-gray-300" : "text-gray-700"}
             `}
         >
+          {/* User profile icon */}
           <HiOutlineUserCircle
             size={24}
             className={`transition-transform duration-300 ${
               !collapse ? "transform scale-110" : ""
             }`}
           />
+          {/* User details */}
           <div className={`${!collapse && "hidden"} overflow-hidden`}>
             <p className="dark:text-white">Rudra Devi</p>
             <p className="text-xs text-gray-500 dark:text-white truncate">
@@ -134,9 +158,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* {collapse} */}
-
-      {/* Event Card */}
+      {/* Event Card (visible when showEventCard is true) */}
       {showEventCard && (
         <div
           className={`fixed left-64 top-0 z-50 lg:left-64 transition-all duration-300 ease-in-out ${
@@ -154,6 +176,8 @@ const Sidebar = () => {
             >
               <IoMdClose />
             </button>
+
+            {/* EventCard component */}
             <EventCard
               attendees={300}
               onEdit={handleEdit}

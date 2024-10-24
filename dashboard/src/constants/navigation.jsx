@@ -1,11 +1,11 @@
-import { HiOutlineHome, HiOutlineDocumentReport } from "react-icons/hi";
-import { MdEventNote, MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { CiDark } from "react-icons/ci";
 import { RiUserVoiceLine } from "react-icons/ri";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { LuMessagesSquare } from "react-icons/lu";
 import { IoSettingsOutline } from "react-icons/io5";
-import { CiDark } from "react-icons/ci";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { HiOutlineHome, HiOutlineDocumentReport } from "react-icons/hi";
+import { MdEventNote, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 export const speaker = [
   { name: "Jane Doe", image: "/api/placeholder/32/32" },
@@ -57,7 +57,6 @@ export const sidebarItems = [
     key: "Event",
     label: "Event",
     path: "/event",
-    // event: <EventCard />,
     icon: <MdEventNote />
   },
   {

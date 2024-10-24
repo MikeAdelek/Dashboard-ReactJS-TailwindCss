@@ -1,8 +1,9 @@
 import React from "react";
-import ImageCarousel from "./ImageCarousel";
 import Slide1 from "../assets/1.png";
 import Slide2 from "../assets/2.png";
 import Slide3 from "../assets/3.png";
+
+import ImageCarousel from "./ImageCarousel";
 
 export const slides = [
   {

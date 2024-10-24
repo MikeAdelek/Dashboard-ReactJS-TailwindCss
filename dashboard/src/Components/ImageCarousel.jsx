@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { slides } from "./ParentComponent";
-// import { imageText } from "./TransactionChart";
 
 const ImageCarousel = ({ autoSlide = false, autoSlideInterval = 3000 }) => {
   const [curr, setCurr] = useState(0);
@@ -72,23 +72,3 @@ const ImageCarousel = ({ autoSlide = false, autoSlideInterval = 3000 }) => {
 };
 
 export default ImageCarousel;
-
-/* {imageText.map((text, i) => (
-          <div
-            key={i}
-            className={`absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 p-4 text-white text-center ${
-              curr === i ? "opacity-100" : "opacity-100"
-            }`}
-          >
-            <strong>{text.title}</strong>
-            <p>{text.desc}</p>
-          </div>
-        ))} */
-
-// {
-//   slide.text && (
-//     <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 p-4 rounded-sm text-white text-sm">
-//       {slide.text}
-//     </div>
-//   );
-// }

@@ -1,6 +1,7 @@
 import React from "react";
 import { FiUsers } from "react-icons/fi";
 import { Edit, Trash2, CheckSquare, Users } from "lucide-react";
+
 import { eventCard } from "../constants/table";
 import { speaker } from "../constants/navigation";
 
@@ -11,7 +12,6 @@ const EventCard = ({ attendees = 300, onEdit, onDelete, onComplete }) => {
         {/* Event Header */}
         {eventCard.map(({ Event, Date, eventDescription }, index) => (
           <div className="mb-4" key={index}>
-            {/* <div key={index}></div> */}
             <h2 className="dark:text-white text-2xl sm:text-2xl font-bold text-gray-800">
               {Event}
             </h2>
