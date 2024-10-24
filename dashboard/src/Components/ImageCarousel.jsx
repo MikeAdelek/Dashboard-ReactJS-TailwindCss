@@ -3,14 +3,22 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { slides } from "./ParentComponent";
 
+// ImageCarousel component that accepts autoSlide and autoSlideInterval props
 const ImageCarousel = ({ autoSlide = false, autoSlideInterval = 3000 }) => {
+  // State to track current slide index
   const [curr, setCurr] = useState(0);
 
+  // Function to navigate to previous slide
+  // If at first slide, loop to last slide, otherwise go to previous slide
   const prevSlide = () =>
     setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1));
+
+  // Function to navigate to next slide
+  // If at last slide, loop to first slide, otherwise go to next slide
   const nextSlide = () =>
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
+  // Effect hook to handle auto-sliding functionality
   useEffect(() => {
     if (!autoSlide) return;
     const slideInterval = setInterval(nextSlide, autoSlideInterval);
@@ -19,10 +27,12 @@ const ImageCarousel = ({ autoSlide = false, autoSlideInterval = 3000 }) => {
 
   return (
     <div className="overflow-hidden relative w-full">
+      {/* Slides container with transition effect */}
       <div
         className="flex transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
+        {/* Map through slides array to render each slide */}
         {slides.map((slide, id) => (
           <div key={id} className="relative flex-shrink-0 w-full h-[22rem]">
             <img
