@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
 import Dashboard from "./Components/Dashboard";
-import EventManagement from "./pages/EventManagement";
 import NewsPage from "./pages/NewsPage";
 import Speakers from "./pages/Speakers";
+import Gallery from "./pages/Gallery";
+import EventManagement from "./pages/EventManagement";
 import "./index.css";
 
 // Theme Context
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/events" element={<EventManagement />} />
                 <Route path="/news" element={<NewsPage />} />
                 <Route path="/speakers" element={<Speakers />} />
+                <Route path="/gallery" element={<Gallery />} />
               </Routes>
             </main>
           </div>
